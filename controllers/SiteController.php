@@ -130,4 +130,33 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionTampil()
+    {
+        return $this->render('tampil');
+    }
+
+    // menampilkan form komentar menggunakan model
+    public function actionKomentar()
+    {
+        $model = new \app\models\Komentar();
+        // kondisi jika ada post request
+        if (Yii::$app->request->post()) {
+            //load data input
+            $model->load(Yii::$app->request->post());
+            //falidation data input
+            if ($model->validate()) {
+                Yii::$app->session->setFlash('success', 'Terima kasih');
+            } else {
+                Yii::$app->session->setFlash('error', 'Maaf, data input salah!');
+            }
+            return $this->render('hasil_komentar', [
+                'model' => $model,
+            ]);
+        } else {
+            return $this->render('komentar', [
+                'model' => $model,
+            ]);
+        }
+    }
 }
