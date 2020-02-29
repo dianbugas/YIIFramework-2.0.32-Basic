@@ -4,27 +4,24 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\PostsSearch */
+/* @var $model app\models\MahasiswasSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="posts-search">
+<div class="mahasiswas-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
-        'options' => [
-            'data-pjax' => 1
-        ],
     ]); ?>
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'title') ?>
+    <?= $form->field($model, 'nama') ?>
 
-    <?= $form->field($model, 'description') ?>
+    <?= $form->field($model, 'tgl_lahir') ?>
 
-    <?= $form->field($model, 'author_id') ?>
+    <?= $form->field($model, 'alamat') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

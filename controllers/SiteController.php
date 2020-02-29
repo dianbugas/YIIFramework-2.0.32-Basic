@@ -159,4 +159,48 @@ class SiteController extends Controller
             ]);
         }
     }
+
+    public function actionQuery()
+    {
+        $db = Yii::$app->db;
+        $command = $db->createCommand('SELECT * FROM mahasiswa');
+        $mahasiswas = $command->queryAll();
+        // Ekstrak data
+        foreach ($mahasiswas as $employee) {
+            echo "<br>";
+            echo $employee['id'] . " ";
+            echo $employee['nama'] . " ";
+            echo "(" . $employee['prodi'] . ") ";
+        }
+    }
+
+    public function actionQuery2()
+    {
+        $db = Yii::$app->db;
+        // return a single row
+        $employee = $db->createCommand('SELECT * FROM mahasiswa where id=1')->queryOne();
+        echo $employee['id'] . " ";
+        echo $employee['nama'] . " ";
+        echo "(" . $employee['prodi'] . ") ";
+        echo "<hr>";
+        // return a single column (the first column)
+        $names = $db->createCommand('SELECT name FROM mahasiswa')->queryColumn();
+        print_r($names);
+        echo "<hr>";
+        // return a scalar
+        $count = $db->createCommand('SELECT COUNT(*) FROM mahasiswa')->queryScalar();
+        echo "Jumlah Employee " . $count;
+        echo "<hr>";
+    }
+
+    public function actionActiveRecord()
+    {
+        $mahasiswas = \app\models\Mahasiswa::find()->all();
+        foreach ($mahasiswas as $employee) {
+            echo "<br>";
+            echo $employee['id'] . " ";
+            echo $employee['nama'] . " ";
+            echo "(" . $employee['prodi'] . ") ";
+        }
+    }
 }

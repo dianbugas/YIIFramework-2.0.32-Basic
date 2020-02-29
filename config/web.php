@@ -42,6 +42,7 @@ $config = [
                 ],
             ],
         ],
+        //mengubah url menjadi lebih simpel
         'db' => $db,
         'urlManager' => [
             'enablePrettyUrl' => true,
