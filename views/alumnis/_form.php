@@ -11,7 +11,13 @@ use kartik\date\DatePicker;
 $radio_ary = [
     'laki' => 'Laki-Laki',
     'prempuan' => 'Perempuan',
-]
+];
+
+$status_kerja = [
+    'belum' => 'Sudah Berkerja',
+    'sudah' => 'Belum Berkerja',
+];
+
 ?>
 
 <div class="alumnis-form">
@@ -49,7 +55,13 @@ $radio_ary = [
 
     <?= $form->field($model, 'angkatan')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status_kerja')->textInput(['maxlength' => true]) ?>
+    <?php //$form->field($model, 'status_kerja')->textInput(['maxlength' => true]) 
+    ?>
+
+    <?= $form->field($model, 'status_kerja')->radioList($status_kerja, [
+        'unselect' => null,
+        'separator' => '<br>'
+    ]) ?>
 
     <?= $form->field($model, 'tmp_kerja')->textInput(['maxlength' => true]) ?>
 
